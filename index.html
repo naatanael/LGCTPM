@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Gaceta de TPM | El Periódico de la Liga</title>
+    <style>
+        html { scroll-behavior: smooth; }
+        :root {
+            --azul-principal: #1b365d;
+            --dorado: #c5a059;
+            --fondo-gris: #f4f6f8;
+            --texto-oscuro: #222;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background-color: var(--fondo-gris);
+            color: var(--texto-oscuro);
+        }
+        header {
+            background-color: var(--azul-principal);
+            color: white; padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid var(--dorado);
+        }
+        header h1 { margin: 0; font-size: 2.5rem; letter-spacing: 2px; text-transform: uppercase; }
+        header p { margin: 5px 0 0; color: var(--dorado); font-style: italic; }
+        nav {
+            background-color: #112239;
+            display: flex; justify-content: center;
+            gap: 20px; padding: 12px;
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav a {
+            color: white; text-decoration: none;
+            font-weight: bold; padding: 8px 16px; border-radius: 4px;
+        }
+        nav a:hover { background-color: var(--dorado); color: var(--azul-principal); }
+        .ticker {
+            background-color: var(--dorado);
+            color: var(--azul-principal);
+            padding: 10px 20px; font-weight: bold;
+            display: flex; align-items: center;
+        }
+        .ticker-tag {
+            background-color: var(--azul-principal);
+            color: white; padding: 3px 8px;
+            border-radius: 3px; margin-right: 15px; font-size: 0.8rem;
+        }
+        .container {
+            max-width: 1200px; margin: 20px auto;
+            padding: 0 20px;
+            display: grid; grid-template-columns: 2fr 1fr; gap: 20px;
+        }
+        .article-card {
+            background: white; border-radius: 8px;
+            overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px; scroll-margin-top: 70px;
+        }
+        .article-content { padding: 20px; }
+        .article-tag { color: var(--dorado); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
+        .article-title { margin: 10px 0; font-size: 1.8rem; color: var(--azul-principal); }
+        .article-date { color: #777; font-size: 0.8rem; margin-bottom: 15px; }
+        .more-text { display: none; margin-top: 10px; line-height: 1.6; }
+        .read-btn {
+            background: none; border: none;
+            color: var(--azul-principal); font-weight: bold;
+            font-size: 1rem; cursor: pointer; padding: 0;
+            margin-top: 10px; text-decoration: underline;
+        }
+        .sidebar-section {
+            background: white; padding: 20px;
+            border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px; scroll-margin-top: 70px;
+        }
+        .sidebar-title { border-bottom: 2px solid var(--azul-principal); padding-bottom: 5px; color: var(--azul-principal); margin-top: 0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 8px; text-align: left; font-size: 0.9rem; border-bottom: 1px solid #ddd; }
+        th { background-color: var(--azul-principal); color: white; }
+        footer {
+            background-color: var(--azul-principal);
+            color: white; text-align: center;
+            padding: 20px 0; margin-top: 40px;
+            border-top: 3px solid var(--dorado);
+        }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header id="inicio">
+        <h1>La Gaceta de TPM</h1>
+        <p>El Periódico de la Liga</p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#entrevistas">Entrevistas</a>
+        <a href="#tabla">Tabla y Fechas</a>
+    </nav>
+
+    <div class="ticker">
+        <span class="ticker-tag">ÚLTIMA HORA</span>
+        <marquee behavior="scroll" direction="left" id="marquesina">Cargando noticias...</marquee>
+    </div>
+
+    <div class="container">
+        <main id="contenedor-noticias">
+            <!-- Las noticias se insertan automáticamente acá desde noticias.json -->
+        </main>
+
+        <aside>
+            <div class="sidebar-section" id="tabla">
+                <h3 class="sidebar-title">Tabla de Posiciones</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Club</th>
+                            <th>PTS</th>
+                            <th>PJ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenedor-tabla">
+                        <!-- Las posiciones se insertan automáticamente acá -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Sobre El Periódico</h3>
+                <p>Medio informativo independiente dedicado a la cobertura total de la comunidad de TPM Football.</p>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 La Gaceta de TPM — Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Carga los datos dinámicamente desde el JSON
+        fetch('noticias.json')
+            .then(res => res.json())
+            .then(data => {
+                // 1. Cargar marquesina
+                document.getElementById('marquesina').innerText = data.ultimaHora;
+
+                // 2. Cargar noticias
+                const contenedor = document.getElementById('contenedor-noticias');
+                contenedor.innerHTML = '';
+                data.noticias.forEach((item, index) => {
+                    contenedor.innerHTML += `
+                        <article class="article-card" id="${item.seccion}">
+                            <div class="article-content">
+                                <span class="article-tag">${item.categoria}</span>
+                                <h2 class="article-title">${item.titulo}</h2>
+                                <div class="article-date">Publicado el ${item.fecha}</div>
+                                <p>${item.resumen}</p>
+                                <div class="more-text" id="nota-${index}">
+                                    <p>${item.contenidoCompleto}</p>
+                                </div>
+                                <button class="read-btn" onclick="toggleNota('nota-${index}', this)">Leer nota completa &rarr;</button>
+                            </div>
+                        </article>
+                    `;
+                });
+
+                // 3. Cargar tabla de posiciones
+                const tabla = document.getElementById('contenedor-tabla');
+                tabla.innerHTML = '';
+                data.tabla.forEach(pos => {
+                    tabla.innerHTML += `
+                        <tr>
+                            <td>${pos.posicion}</td>
+                            <td>${pos.club}</td>
+                            <td><strong>${pos.pts}</strong></td>
+                            <td>${pos.pj}</td>
+                        </tr>
+                    `;
+                });
+            })
+            .catch(err => console.error("Error al cargar datos:", err));
+
+        function toggleNota(id, btn) {
+            const contenido = document.getElementById(id);
+            if (contenido.style.display === "block") {
+                contenido.style.display = "none";
+                btn.innerHTML = "Leer nota completa &rarr;";
+            } else {
+                contenido.style.display = "block";
+                btn.innerHTML = "Ocultar nota &larr;";
+            }
+        }
+    </script>
+</body>
+</html>

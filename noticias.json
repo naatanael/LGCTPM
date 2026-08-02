@@ -1,0 +1,26 @@
+{
+  "ultimaHora": "¿Se acerca el inicio de una nueva copa? — ¿Nuevos clubes? — ¿Nuevos fichajes?",
+  "noticias": [
+    {
+      "seccion": "noticias",
+      "categoria": "Análisis de la Fecha",
+      "titulo": "¡Arranca una nueva jornada en TPM Football!",
+      "fecha": "2 de Agosto de 2026",
+      "resumen": "Los equipos ultiman detalles para lo que promete ser una de las fechas más ajustadas del torneo. Repasamos cómo llegan las alineaciones...",
+      "contenidoCompleto": "Los planteles se encuentran entrenando al máximo. Varias figuras de la fecha pasada confirmaron su presencia, mientras que algunos equipos preparan cambios tácticos importantes para asegurar los 3 puntos."
+    },
+    {
+      "seccion": "entrevistas",
+      "categoria": "Entrevistas",
+      "titulo": "Hablan los protagonistas: \"Vinimos a pelear el torneo\"",
+      "fecha": "1 de Agosto de 2026",
+      "resumen": "En exclusiva para La Gaceta de TPM, conversamos con la figura del partido anterior sobre el rendimiento táctico del equipo...",
+      "contenidoCompleto": "<b>Periodista:</b> ¿Cómo vieron el planteo del rival?<br><b>Jugador:</b> \"Sabíamos que se iban a cerrar atrás, pero mantuvimos la paciencia. El grupo está unido y confiamos en la idea de juego.\""
+    }
+  ],
+  "tabla": [
+    { "posicion": 1, "club": "Equipo A", "pts": 0, "pj": 0 },
+    { "posicion": 2, "club": "Equipo B", "pts": 0, "pj": 0 },
+    { "posicion": 3, "club": "Equipo C", "pts": 0, "pj": 0 }
+  ]
+}
