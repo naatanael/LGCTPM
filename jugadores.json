@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mateo-rossi",
+    "nombre": "Mateo Rossi",
+    "club": "Buenos Ayres FC",
+    "posicion": "Delantero",
+    "dorsal": 9,
+    "partidos": 10,
+    "goles": 8,
+    "asistencias": 3,
+    "amarillas": 1,
+    "rojas": 0
+  },
+  {
+    "id": "gonzalo-fernandez",
+    "nombre": "Gonzalo Fernández",
+    "club": "Deportivo Luján",
+    "posicion": "Defensa",
+    "dorsal": 2,
+    "partidos": 8,
+    "goles": 1,
+    "asistencias": 0,
+    "amarillas": 3,
+    "rojas": 0
+  }
+]
